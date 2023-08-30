@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  GURU
+  ADMIN
+}
+
+enum TipePelanggaran {
+  RINGAN
+  SEDANG
+  BERAT
+}
+
+model Guru {
+  id        String   @id @default(cuid())
+  name      String
+  role      Role     @default(GURU)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+  password  String
+
+  laporan Kasus[]
+}
+
+model Pelanggaran {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  kategori  String
+  updatedAt DateTime @updatedAt
+  poin      Int
+
+  tipe TipePelanggaran
+
+  riwayatKasus Kasus[]
+}
+
+model Kasus {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  deskripsi String?  @db.Text
+  saksi     String?
+  bukti     String?  @db.LongText
+
+  siswa    Siswa  @relation(fields: [siswaNis], references: [nis], onDelete: Cascade)
+  siswaNis String
+
+  pelapor   Guru   @relation(fields: [pelaporId], references: [id], onDelete: NoAction)
+  pelaporId String
+
+  pelanggaran   Pelanggaran @relation(fields: [pelanggaranId], references: [id], onDelete: Cascade)
+  pelanggaranId Int
+}
+
+model Penghargaan {
+  id        Int      @id @default(autoincrement())
+  nama      String
+  updatedAt DateTime @default(now())
+  poin      Int
+
+  riwayatReward Reward[]
+}
+
+model Reward {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+
+  penghargaan   Penghargaan @relation(fields: [penghargaanId], references: [id], onDelete: Cascade)
+  penghargaanId Int
+
+  siswa    Siswa  @relation(fields: [siswaNis], references: [nis], onDelete: Cascade)
+  siswaNis String
+}
+
+model Siswa {
+  id              String   @id @default(cuid())
+  nama            String
+  nis             String   @unique
+  asrama          String?
+  kelas           String?
+  createdAt       DateTime @default(now())
+  poinPelanggaran Int      @default(0)
+  poinPenghargaan Int      @default(0)
+  alamat          String?
+  avatar          String?
+
+  reward Reward[]
+  kasus  Kasus[]
+}
