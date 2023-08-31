@@ -18,6 +18,7 @@ export default function ThemeSwitch() {
     case 'light':
       return (
         <Button
+          name='theme-switch'
           className='mr-2'
           size={'icon'}
           variant={'ghost'}
@@ -30,6 +31,7 @@ export default function ThemeSwitch() {
     case 'dark':
       return (
         <Button
+          name='theme-switch'
           className='mr-2'
           size={'icon'}
           variant={'ghost'}
