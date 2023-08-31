@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { Toaster } from '-/components/ui/toast/toaster';
 import NextAuthProvider from '-/context/next-auth-provider';
 import { NextThemeProvider } from '-/context/next-theme-provider';
 import TRPCProvider from '-/trpc/trpc-provider';
@@ -68,9 +69,10 @@ export default function RootLayout({
           <TRPCProvider>
             <NextThemeProvider
               attribute='class'
-              defaultTheme='light'
+              defaultTheme='dark'
             >
               {children}
+              <Toaster />
             </NextThemeProvider>
           </TRPCProvider>
         </NextAuthProvider>
