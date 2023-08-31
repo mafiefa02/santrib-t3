@@ -8,6 +8,9 @@ export const authOptions: AuthOptions = {
   session: {
     strategy: 'jwt',
   },
+  pages: {
+    signIn: '/login',
+  },
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({

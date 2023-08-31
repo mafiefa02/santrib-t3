@@ -1,4 +1,4 @@
-import { prisma } from '-/prisma';
+import { prisma } from "-/prisma";
 
 const URL = 'https://santrib.mbss.sch.id';
 
@@ -12,7 +12,7 @@ export default async function sitemap() {
     };
   });
 
-  const routes = ['', '/manage', '/unauthorized'].map((route) => ({
+  const routes = ['', '/manage', '/unauthorized', '/siswa'].map((route) => ({
     url: `${URL}${route}`,
     lastModified: new Date().toISOString(),
   }));
