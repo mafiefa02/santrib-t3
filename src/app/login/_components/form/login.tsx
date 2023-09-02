@@ -76,6 +76,7 @@ export default function LoginForm() {
               <FormLabel>Username</FormLabel>
               <FormControl>
                 <Input
+                  autoFocus
                   type='text'
                   {...field}
                 />

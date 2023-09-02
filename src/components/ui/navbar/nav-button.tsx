@@ -1,5 +1,6 @@
 'use client';
 
+import { useSearchIsActive } from '-/hooks/useSearchIsActive';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React from 'react';
@@ -12,8 +13,11 @@ export default function NavButton({
   link: { href: string; label: string };
 }) {
   const { status } = useSession();
+  const { searchActive } = useSearchIsActive();
 
   if (!(status === 'authenticated') && link.href === '/manage') return null;
+
+  if (searchActive) return null;
 
   return (
     <Button

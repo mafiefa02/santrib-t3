@@ -1,13 +1,16 @@
 import logo from '-/../public/logo.webp';
 import ThemeSwitch from '-/components/theme-switch';
 import { Typography } from '-/components/typography';
+import SearchActiveContextProvider from '-/context/search-active-provider';
 import { HomeIcon, SchoolIcon, SettingsIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import AuthButton from './auth-button';
 import MobileNavButton from './mobile-nav-button';
+import MobileSearchButton from './mobile-search-button';
 import NavButton from './nav-button';
+import SearchButton from './search-button';
 
 const links = [
   {
@@ -64,19 +67,27 @@ export default function NavigationBar() {
           </Typography>
         </Link>
 
-        <div className='flex items-center gap-2'>
-          {links.map((link, index) => (
-            <NavButton
-              link={link}
-              key={index}
-            />
-          ))}
+        <SearchActiveContextProvider>
+          <div className='flex items-center gap-2'>
+            {links.map((link, index) => (
+              <NavButton
+                link={link}
+                key={index}
+              />
+            ))}
 
-          <ThemeSwitch />
+            <SearchButton />
 
-          <AuthButton />
-        </div>
+            <ThemeSwitch />
+
+            <AuthButton />
+          </div>
+        </SearchActiveContextProvider>
       </nav>
+
+      <SearchActiveContextProvider>
+        <MobileSearchButton />
+      </SearchActiveContextProvider>
 
       <nav className='flex w-full items-center pt-3 md:hidden'>
         {links.map((link, index) => (
