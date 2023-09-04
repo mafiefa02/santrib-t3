@@ -1,4 +1,5 @@
 import background from '-/../public/home.webp';
+import { getBlurDataUrl } from '-/lib/utils';
 import Image from 'next/image';
 import React from 'react';
 
@@ -14,6 +15,8 @@ export default function BackgroundImage() {
         priority
         fill
         sizes='100vw'
+        placeholder='blur'
+        blurDataURL={getBlurDataUrl()}
       />
 
       <div className='absolute bottom-0 left-0 h-full w-full bg-gradient-to-b from-background to-transparent lg:bg-gradient-to-r' />
