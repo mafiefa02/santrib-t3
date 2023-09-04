@@ -1,9 +1,10 @@
 'use client'; // Error components must be Client Components
 
 import { Typography } from '-/components/typography';
-import { Button } from '-/components/ui/button';
+import { Button, buttonVariants } from '-/components/ui/button';
 import { Input } from '-/components/ui/input';
 import { SearchIcon } from 'lucide-react';
+import Link from 'next/link';
 
 import BackgroundImage from './_components/background';
 
@@ -43,30 +44,30 @@ export default function Error({
         </div>
       </div>
 
-      <div className='mt-6 flex w-full items-center justify-center rounded-md py-8 shadow'>
+      <div className='mt-6 flex w-full flex-col items-center justify-center gap-2 rounded-md py-8 text-center shadow'>
         <Typography
           types='h4'
           className='max-w-[60ch]'
         >
-          Terjadi kesalahan saat memuat halaman ini. Silahkan{' '}
-          <Button
-            onClick={reset}
-            variant={'link'}
-            asChild
-          >
-            <span>coba lagi.</span>
-          </Button>
-          .
+          Terjadi kesalahan saat memuat halaman ini. Silahkan coba lagi.
         </Typography>
-      </div>
 
-      <div className='mt-6 flex w-full items-center justify-center rounded-md py-8 shadow'>
         <Typography
           types='h4'
-          className='max-w-[60ch]'
+          className='max-w-[60ch] text-primary'
         >
           {error.message}
         </Typography>
+
+        <div className='mt-2 flex max-w-[60ch] items-center gap-4'>
+          <Link
+            className={buttonVariants({ variant: 'outline' })}
+            href='/siswa'
+          >
+            Kembali ke Daftar Siswa
+          </Link>
+          <Button onClick={() => reset()}>Coba Lagi</Button>
+        </div>
       </div>
     </section>
   );

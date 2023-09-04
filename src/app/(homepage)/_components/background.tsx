@@ -11,6 +11,7 @@ export default function BackgroundImage() {
         className='relative'
         priority
         fill
+        sizes='100vw'
         style={{
           objectFit: 'cover',
           objectPosition: 'top',

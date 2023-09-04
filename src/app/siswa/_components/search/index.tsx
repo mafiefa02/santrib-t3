@@ -45,6 +45,7 @@ export default function SearchParams() {
         />
 
         <Link
+          aria-label='cari'
           id='search-button'
           href={
             search !== ''

@@ -79,4 +79,24 @@ export const siswaRouter = createTRPCRouter({
         nextCursor,
       };
     }),
+
+  getSiswa: publicProcedure
+    .input(z.object({ nis: z.string() }))
+    .query(async ({ input }) => {
+      const { nis } = input;
+
+      // If input is provided, return siswa where nis is equal to input
+      const siswa = await prisma.siswa.findUnique({
+        where: { nis },
+      });
+
+      if (!siswa) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: `Siswa dengan NIS ${nis} tidak ditemukan`,
+        });
+      }
+
+      return siswa;
+    }),
 });

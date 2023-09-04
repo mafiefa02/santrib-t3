@@ -2,7 +2,7 @@ import logo from '-/../public/logo.webp';
 import ThemeSwitch from '-/components/theme-switch';
 import { Typography } from '-/components/typography';
 import SearchActiveContextProvider from '-/context/search-active-provider';
-import { HomeIcon, SchoolIcon, SettingsIcon } from 'lucide-react';
+import { HomeIcon, SettingsIcon, User2Icon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -24,20 +24,20 @@ const links = [
     ),
   },
   {
-    label: 'Siswa',
-    href: '/siswa',
+    label: 'Manage',
+    href: '/manage',
     icon: (
-      <SchoolIcon
+      <SettingsIcon
         className='hidden xs:block'
         size={16}
       />
     ),
   },
   {
-    label: 'Manage',
-    href: '/manage',
+    label: 'Siswa',
+    href: '/siswa',
     icon: (
-      <SettingsIcon
+      <User2Icon
         className='hidden xs:block'
         size={16}
       />

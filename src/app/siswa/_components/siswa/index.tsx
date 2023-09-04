@@ -9,6 +9,7 @@ import { notFound, useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+import SiswaLoadingState from './loading-state';
 import SiswaCard from './siswa-card';
 
 import type { inferRouterOutputs } from '@trpc/server';
@@ -52,7 +53,7 @@ export default function SiswaList({
   } = trpc.siswa.infiniteGetSiswa.useInfiniteQuery(
     {
       filter: filter ?? [],
-      sortBy: sort ?? [{ field: 'nis', order: 'asc' }],
+      sortBy: sort ?? [{ field: 'nama', order: 'asc' }],
       search: search ?? undefined,
     },
     {
@@ -67,12 +68,7 @@ export default function SiswaList({
     }
   }, [inView, fetchNextPage, isFetchingNextPage, hasNextPage]);
 
-  if (isLoading)
-    return (
-      <div className='flex flex-col items-start justify-start gap-y-2 rounded-md p-4 shadow hover:bg-muted/30 hover:shadow-md dark:hover:bg-muted/10'>
-        <Typography types='h4'>Loading...</Typography>
-      </div>
-    );
+  if (isLoading) return <SiswaLoadingState />;
 
   if (isError) return notFound();
 
@@ -122,7 +118,7 @@ export default function SiswaList({
             types='h4'
             className='flex items-center gap-2'
           >
-            Loading... <LoadingSpinner />
+            <LoadingSpinner /> Loading...
           </Typography>
         </div>
       )}

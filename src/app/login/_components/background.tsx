@@ -1,10 +1,10 @@
-import background from "-/../public/home.webp";
-import Image from "next/image";
-import React from "react";
+import background from '-/../public/home.webp';
+import Image from 'next/image';
+import React from 'react';
 
 export default function BackgroundImage() {
   return (
-    <div className='absolute right-0 top-0 -z-50 min-h-screen h-full w-full overflow-hidden lg:w-1/2'>
+    <div className='absolute right-0 top-0 -z-50 h-full min-h-screen w-full overflow-hidden lg:w-1/2'>
       {/* Background image will ignore the container */}
       <Image
         src={background}
@@ -13,6 +13,7 @@ export default function BackgroundImage() {
         style={{ objectFit: 'cover', objectPosition: 'right', zIndex: -99 }}
         priority
         fill
+        sizes='100vw'
       />
 
       <div className='absolute bottom-0 left-0 h-full w-full bg-gradient-to-b from-background to-transparent lg:bg-gradient-to-r' />

@@ -1,11 +1,11 @@
 'use client';
 
-import { useMounted } from '-/hooks/useMounted';
-import { MoonIcon, SunIcon } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { useMounted } from "-/hooks/useMounted";
+import { MoonIcon, SunIcon } from "lucide-react";
+import { useTheme } from "next-themes";
 
-import { Button } from './ui/button';
-import { Skeleton } from './ui/skeleton';
+import { Button } from "./ui/button";
+import { Skeleton } from "./ui/skeleton";
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
@@ -18,7 +18,9 @@ export default function ThemeSwitch() {
     case 'light':
       return (
         <Button
-          name='theme-switch'
+          id='dark-theme-switch'
+          name='dark-theme-switch'
+          aria-label='theme-switch'
           className='mr-2'
           size={'icon'}
           variant={'ghost'}
@@ -31,7 +33,9 @@ export default function ThemeSwitch() {
     case 'dark':
       return (
         <Button
-          name='theme-switch'
+          id='light-theme-switch'
+          name='light-theme-switch'
+          aria-label='theme-switch'
           className='mr-2'
           size={'icon'}
           variant={'ghost'}
